@@ -3,9 +3,9 @@
 #### The help/usage message.
 
 usage() {
-	printf "usage: %s [-h] -c processor_number
+	printf "usage: %s [-h] -c cpu
 	-h: prints this message
-	-c processor_number: the number of the processor to switch on/off \n" $(basename $0) >&2
+	-c cpu: the number of the core to switch on/off \n" $(basename $0) >&2
 }
 
 #### Parse options
@@ -18,7 +18,7 @@ fi
 while getopts ":c:h" opt; do
   case $opt in
     c)
-      PROCESSOR_NO=$OPTARG ;;
+      CPU=$OPTARG ;;
     h)
 	  usage
 	  exit 1 ;;
@@ -35,4 +35,4 @@ done
 
 ####
 
-echo $(( $(cat /sys/devices/system/cpu/cpu$PROCESSOR_NO/online) ^ 1 )) > /sys/devices/system/cpu/cpu$PROCESSOR_NO/online
+echo $(( $(cat /sys/devices/system/cpu/cpu$CPU/online) ^ 1 )) > /sys/devices/system/cpu/cpu$CPU/online
