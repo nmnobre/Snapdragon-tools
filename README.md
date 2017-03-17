@@ -2,4 +2,4 @@
 
 # snapdragon tools
 
-A set of probing tools for the Qualcomm® Snapdragon™ 820 processor.
+A set of tools to probe the cache system and dynamically scale the frequency of the Qualcomm® Snapdragon™ 820 processor.
