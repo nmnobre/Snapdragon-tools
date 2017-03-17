@@ -9,6 +9,7 @@ MAX_B_FREQ=0; MIN_B_FREQ=0
 MAX_L_FREQ=0; MIN_L_FREQ=0
 for i in `seq 0 $CPUS`
 do
+	if [ ! -d /sys/devices/system/cpu/cpu$i/cpufreq/ ]; then continue; fi
 	MAX_FREQ=$(cat /sys/devices/system/cpu/cpu$i/cpufreq/cpuinfo_max_freq)
 	MIN_FREQ=$(cat /sys/devices/system/cpu/cpu$i/cpufreq/cpuinfo_min_freq)		
 	if [ $MAX_FREQ -gt $MAX_B_FREQ ]; then
@@ -71,6 +72,7 @@ done
 
 for i in `seq 0 $CPUS`
 do
+	if [ ! -d /sys/devices/system/cpu/cpu$i/cpufreq/ ]; then continue; fi
 	MAX_FREQ=$(cat /sys/devices/system/cpu/cpu$i/cpufreq/cpuinfo_max_freq)
 	if [ $MAX_FREQ -eq $MAX_B_FREQ ]; then
 		echo $B_GOVERNOR > /sys/devices/system/cpu/cpu$i/cpufreq/scaling_governor

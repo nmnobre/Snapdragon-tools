@@ -4,7 +4,9 @@
 usage() {
 	printf "usage: %s [-h] [-s seconds]
 	-h: prints this message
-	-s seconds: interval (in seconds) between CPU frequency fetches (default: 2) \n" $(basename $0) >&2
+	-s seconds: interval (in seconds) between CPU frequency fetches (default: 2)
+
+	Root permissions required on android: run '$ adb root' prior to '$ adb shell' \n" $(basename $0) >&2
 }
 
 #### Customizable options (default values):
@@ -44,11 +46,15 @@ while true
 do
 
 	for i in `seq 0 $CPUS`
-	do			
+	do
 		if [ $(uname -m) = "x86_64" ]; then
-			cat /proc/cpuinfo | grep "MHz" -m $((i+1)) | tail -1 | sed 's/^[^:]*: //g' | xargs printf "cpu $i: %s\t"
+			cat /proc/cpuinfo | grep "MHz" -m $((i+1)) | tail -1 | sed 's/^[^:]*: //g' | xargs printf "cpu $i: %.0fMHz\t"
 		else
-			cat /sys/devices/system/cpu/cpu$i/cpufreq/cpuinfo_cur_freq | xargs printf "cpu $i: %s\t"
+			if [ -f /sys/devices/system/cpu/cpu$i/cpufreq/cpuinfo_cur_freq ]; then
+				echo $(( $(cat /sys/devices/system/cpu/cpu$i/cpufreq/cpuinfo_cur_freq)/1000 )) | xargs printf "cpu $i: %dMHz\t"
+			else
+				printf "cpu $i: offline\t"
+			fi
 		fi
 	done
 
