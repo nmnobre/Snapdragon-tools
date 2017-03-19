@@ -2,7 +2,7 @@ ANDROID_NDK = /opt/android-ndk-r13b
 
 FC_aarch64 = $(ANDROID_NDK)/toolchains/aarch64-linux-android-4.9/prebuilt/linux-x86_64/bin/aarch64-linux-android-gfortran
 FC_x86_64 = gfortran
-FFLAGS = -Wall -Wfatal-errors -O2 -fPIE -std=f2003
+FFLAGS = -Wall -Wfatal-errors -O2 -fPIE -std=f2008
 LDFLAGS = -fPIE -pie --sysroot=$(ANDROID_NDK)/platforms/android-23/arch-arm64/
 
 EXEC_ARM = vec_aarch64

@@ -5,7 +5,10 @@
 usage() {
 	printf "usage: %s [-h] -c cpu
 	-h: prints this message
-	-c cpu: the number of the core (0 - %u) to switch on/off\n" $(basename $0) $(cat /proc/cpuinfo | grep "processor" | tail -c 2) >&2
+	-c cpu: the number of the core (0 - %u) to switch on/off
+
+	Root permissions required on Android: run '$ adb root' prior to '$ adb shell' \n"\
+	$(basename $0) $(cat /proc/cpuinfo | grep "processor" | tail -c 2) >&2
 }
 
 #### Parse options

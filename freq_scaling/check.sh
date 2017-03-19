@@ -6,7 +6,7 @@ usage() {
 	-h: prints this message
 	-s seconds: interval (in seconds) between CPU frequency fetches (default: 2)
 
-	Root permissions required on android: run '$ adb root' prior to '$ adb shell' \n" $(basename $0) >&2
+	Root permissions required on Android: run '$ adb root' prior to '$ adb shell' \n" $(basename $0) >&2
 }
 
 #### Customizable options (default values):
