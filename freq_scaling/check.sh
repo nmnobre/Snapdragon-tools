@@ -36,7 +36,7 @@ done
 
 # These detect the maximum CPU ID available (= maximum number of CPUs - 1),
 # and the interval (in seconds) between CPU frequency fetches.
-CPUS=$(cat /proc/cpuinfo | grep "processor" | tail -c 2)
+CPUS=$(cat /proc/cpuinfo | grep "processor" | tail -c 3)
 
 ####
 

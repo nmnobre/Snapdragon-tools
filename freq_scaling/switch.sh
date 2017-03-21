@@ -6,7 +6,7 @@ usage() {
 	-c cpu: the number of the core (0 - %u) to switch on/off
 
 	Root permissions required on Android: run '$ adb root' prior to '$ adb shell' \n"\
-	$(basename $0) $(cat /proc/cpuinfo | grep "processor" | tail -c 2) >&2
+	$(basename $0) $(cat /proc/cpuinfo | grep "processor" | tail -c 3) >&2
 }
 
 #### Parse options

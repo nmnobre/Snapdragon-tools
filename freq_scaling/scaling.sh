@@ -2,7 +2,7 @@
 
 # These detect the maximum CPU ID available (= maximum number of CPUs - 1) and the maximum/minimum
 # allowed CPU frequencies.
-CPUS=$(cat /proc/cpuinfo | grep "processor" | tail -c 2)
+CPUS=$(cat /proc/cpuinfo | grep "processor" | tail -c 3)
 MAX_B_FREQ=0; MIN_B_FREQ=0
 MAX_L_FREQ=0; MIN_L_FREQ=0
 for i in `seq 0 $CPUS`
@@ -28,7 +28,7 @@ usage() {
 	-f freq: the frequency of the low-power cluster cores (%uMHz - %uMHz)
 	-F freq: the frequency of the high-performance cluster cores (%uMHz - %uMHz)
 
-	Root permissions required: run '$ adb root' prior to '$ adb shell'
+	Root permissions required on Android: run '$ adb root' prior to '$ adb shell'
 	For some reason, sometimes(?!) the device resets the frequencies \n" \
 	$(basename $0) "$(cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_available_governors)" \
 	"$(cat /sys/devices/system/cpu/cpu$CPUS/cpufreq/scaling_available_governors)" \
