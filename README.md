@@ -2,7 +2,7 @@
 
 # snapdragon tools
 
-A set of tools to probe the cache system and dynamically scale the frequency of the Qualcomm Snapdragon 820 processor.
+A set of tools to probe the cache system and dynamically scale the frequency of the Qualcomm Snapdragon 820 processor on Android devices.
 
 ## Probing the cache hierarchy
 
@@ -16,4 +16,10 @@ Additionally, a `Makefile` is provided to automate the compiling process. By def
 
 ## Dynamic frequency scaling
 
-Under `./freq_scaling/` there are three utilities, `check.sh`, `scaling.sh` and `switch.sh`, under the form of shell scripts. These were written from the ground up with MirBSD Korn Shell (`mksh`) compatibility in mind. This is a bourne-compatible and mostly POSIX 2008 compliant UNIX shell, similar to the original AT&T Korn shell, that is included with Android and, thus, invoked when one runs `$ adb shell`. The syntax used is also compatible with the widely used Bourne Again Shell (`bash`). 
+Under `./freq_scaling/` there are three utilities, `check.sh`, `scaling.sh` and `switch.sh`, under the form of shell scripts. These were written from the ground up with MirBSD Korn Shell (`mksh`) compatibility in mind. This is a bourne-compatible and mostly POSIX 2008 compliant UNIX shell, similar to the original AT&T Korn shell, that is included with Android and, thus, invoked when one runs `$ adb shell`. The syntax used is also compatible with the widely used Bourne-Again Shell (`bash`). The following is a brief explanation of *what* the tools are supposed to do. For information on *how* to actually use them, please run them with the `-h` flag.
+
+`check.sh` is arguably the most simple utility of the collection as it just repeatedly fetches and prints the frequencies of each and every core (physical cores or logical cores in the case of simultaneous multithreading) in the host CPU at constant time intervals. This is the only tool of the set which has also been tested to run *as is* on Linux x86_64 machines.
+
+`scaling.sh` is perhaps the most powerful tool as it allows changing the governor and dinamically set the speed of the cores of individual clusters of the Qualcomm Snapdragon 820. It is possible to control the speed of the low-power cluster cores only, of the high-performance cluster cores only or both.
+
+`switch.sh` allows switching specific cores on/off. As it name would suggest, the tool behaves exactly like a switch: if the specified core is on, it is turned off, and vice-versa. _Please be aware: on the testbed system used, the Open-Q 820 development kit, turning off cores (even the low-power/low-performance ones) results in weird slowness not yet fully understood._
