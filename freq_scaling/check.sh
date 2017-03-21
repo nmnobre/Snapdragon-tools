@@ -1,5 +1,3 @@
-#!/bin/sh
-
 # The help/usage message.
 usage() {
 	printf "usage: %s [-h] [-s seconds]

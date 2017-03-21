@@ -1,5 +1,3 @@
-#!/bin/sh
-
 #### You shouldn't need to touch these:
 
 # These detect the maximum CPU ID available (= maximum number of CPUs - 1) and the maximum/minimum

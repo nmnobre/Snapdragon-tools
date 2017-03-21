@@ -1,5 +1,3 @@
-#!/bin/sh
-
 #### The help/usage message.
 
 usage() {
