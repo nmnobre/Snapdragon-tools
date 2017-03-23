@@ -1,7 +1,7 @@
 !
 ! MEMORY HIERARCHY DETECTION CODE
 ! THIS VERSION WRITTEN BY MARK BULL   8/9/97
-! THIS VERSION REVISED BY NUNO NOBRE 22/3/17
+! THIS VERSION REVISED BY NUNO NOBRE 15/3/17
 !
       implicit none
       integer i,j,k,n,nops,iops,eops,npts,maxlength,stride,length
@@ -12,9 +12,7 @@
       integer(kind=8) start, finish, time
       real(kind=8) time_sec, perf
       common /heap/ x
-      character(len=32) myname
       character(len=32) ch
-      integer mynamelength, reason
 !
 ! INITIALISE VECTOR DATA
 !
@@ -23,27 +21,12 @@
         end do
         res=0.0
 !
+        print *, "Length     Time     Mflop/s"
+!
 ! USE NON-UNIT STRIDE TO REDUCE REUSE OF CACHE LINES
         call get_command_argument(1, ch)
-        read(ch,*,IOSTAT=reason) stride
-        if (reason .gt. 0) then
-          call get_command_argument(0, myname, mynamelength)
-          write(*,"(3A,/,T9,A,/,T9,2A,/,T17,2A,/,T17,2A)") "usage: ",
-     $           myname(3:mynamelength),
-     $           " [-h] stride",
-     $           "-h: prints this message",
-     $           "stride: the distance between fetched array elements ",
-     $           "(default: 16)",
-     $           "as an array of single-precision floating-point ",
-     $           "values is ",
-     $           "used, the fetched elements are 4*stride ",
-     $           "bytes apart in memory"
-          stop
-        else if (reason .lt. 0) then
-          stride=16
-        end if
-!
-        print *, "Length     Time     Mflop/s"
+        read(ch,'(i4)') stride
+        if (stride .eq. 0) stride=16
 ! USE NPTS POINTS EQUALLY SPACED (LOGARITHMICALLY) BETWEEN LOWER
 ! UPPER BOUNDS
         lower=100.
