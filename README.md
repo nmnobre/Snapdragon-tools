@@ -8,7 +8,7 @@ A set of tools to probe the cache system and dynamically scale the frequency of 
 
 Under `./mem_hierarchy/` there are three files of which two, `vec_consecutive.f` and `vec_mirror.f`, contain Fortran source code based on an older version written in 1997 by Mark Bull.
 
-The following is a brief explanation of *what* the code does. For information on *how* to actually use the compiled binaries, please run them with the `-h` flag.
+The following is a brief explanation of *what* the code does. For information on *how* to actually use the compiled binaries, please run them with the `-h` flag. (Please note that this feature is temporarily unavailable as it was not working as intended.)
 
 `vec_consecutive.f` does repeated sums over equally spaced elements of an increasingly bigger vector. As the total number of operations performed by the CPU would otherwise change with the size of the vector, the program does as many passes through the vector as necessary to keep them (approximately) constant across the different sized vectors. This version improves on Bull's work by reversing the vector initialization loop so that fewer misses occur during the first pass through the vector. This seems to make the "cliffs" corresponding to cache size limits more unambiguous. Additionally, an attempt was made to comply with the modern Fortran 2008 standard and to print the timing and performance results as consistently as possible by normalizing the values with respect to the number of operations actually performed.
 
