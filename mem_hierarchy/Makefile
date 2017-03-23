@@ -15,8 +15,8 @@ all: $(EXEC_x86_64) $(EXEC_ARM)
 $(EXEC_ARM): $(SOURCE)
 	$(FC_aarch64) $(FFLAGS) $(SOURCE) -o $(EXEC_ARM) $(LDFLAGS)
 
-$(EXEC_x86_64): $(SOURCE_FILES)
-	$(FC_x86_64) $(FFLAGS) -o $(EXEC_x86_64) $(SOURCE)
+$(EXEC_x86_64): $(SOURCE)
+	$(FC_x86_64) $(FFLAGS) $(SOURCE) -o $(EXEC_x86_64)
 
 .PHONY: clean
 clean:
