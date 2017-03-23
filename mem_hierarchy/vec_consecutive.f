@@ -12,7 +12,6 @@
       integer(kind=8) start, finish, time
       real(kind=8) time_sec, perf
       common /heap/ x
-      character(len=32) ch
 !
 ! INITIALISE VECTOR DATA
 !
@@ -24,9 +23,7 @@
         print *, "Length     Time     Mflop/s"
 !
 ! USE NON-UNIT STRIDE TO REDUCE REUSE OF CACHE LINES
-        call get_command_argument(1, ch)
-        read(ch,'(i4)') stride
-        if (stride .eq. 0) stride=16
+        stride=16
 ! USE NPTS POINTS EQUALLY SPACED (LOGARITHMICALLY) BETWEEN LOWER
 ! UPPER BOUNDS
         lower=100.
