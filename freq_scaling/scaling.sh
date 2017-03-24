@@ -2,7 +2,7 @@
 
 # These detect the maximum CPU ID available (= maximum number of CPUs - 1) and the maximum/minimum
 # allowed CPU frequencies.
-CPUS=$(cat /proc/cpuinfo | grep "processor" | tail -c 3)
+CPUS=$(( $(cat /proc/cpuinfo | grep "processor" | tail -c 3) + 0 ))
 MAX_B_FREQ=0; MIN_B_FREQ=0
 MAX_L_FREQ=0; MIN_L_FREQ=0
 for i in `seq 0 $CPUS`
