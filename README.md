@@ -1,4 +1,4 @@
-<img src="http://www.cs.man.ac.uk/~nobren/images/snapdragon-tools.png" height="200">
+<img src="http://www.cs.man.ac.uk/~nobren/images/snapdragon-tools-artwork.png" height="200">
 
 # snapdragon tools
 
